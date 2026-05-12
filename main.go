@@ -40,7 +40,7 @@ func main() {
 
 		switch choic {
 		case "1": 
-		abc 
+		handleNewDownload(reader)
 		case "2":
 			efg 
 		case "3":
@@ -51,4 +51,26 @@ func main() {
 			fmt.Println("error in choosing opption")
 		}
 
+		func handleNewDownload(reader *bufio.Reader){
+			fmt.Print("\nEnter URL : ")
+			rawURL, _ := reader.ReadString('\n')
+			rawURL = strings.TrimSpace(rawURL)
+
+			if rawURL == ""{
+				return
+			}
+
+
+		}
 		
+		func handleHistory(){
+
+		}
+
+		func executeDownload(){
+
+		}
+
+		func resolvePath(){
+
+		} 
