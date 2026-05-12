@@ -1,1 +1,1 @@
-Elevator is a cli tool that allows you to download any pdfs and images from a url directly to your local system.
+Elevator is a lightweight terminal based file downloader written in Go.

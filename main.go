@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"net/http"  
 	"net/url"
 	"os"
 )
@@ -21,10 +20,9 @@ type DownloadRecord struct {
 	DownloadedAt  time.Time `json:"downloaded_at"`
 }
 
-
 func main() {
-	fmt.Println("Elevator | Download anything fast")
-	fmt.Println("Status: The best")
+	fmt.Println("Elevator")
+	fmt.Println("Download Anything fast")
 	fmt.Println(strings.Repeat("-", 45))
 
 	reader := bufio.NewReader(os.Stdin)
@@ -35,6 +33,22 @@ func main() {
 		fmt.Println("2. View History & Re-download")
 		fmt.Println("3. Clear History")
 		fmt.Println("4. Exit")
-		fmt.Print("\nSelection > ")
+		fmt.Print("\n Choose a option among 1-4 > ")
+
+		choice,_ := reader.ReadString('\n')
+		choice = strings.TrimSpace(choice)
+
+		switch choic {
+		case "1": 
+		abc 
+		case "2":
+			efg 
+		case "3":
+			hij 
+		case "4":
+			klm 
+		default:
+			fmt.Println("error in choosing opption")
+		}
 
 		
