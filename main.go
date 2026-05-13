@@ -42,9 +42,9 @@ func main() {
 		case "1": 
 		handleNewDownload(reader)
 		case "2":
-			efg 
+		handleHistory(reader)
 		case "3":
-			hij 
+	
 		case "4":
 			klm 
 		default:
@@ -60,17 +60,31 @@ func main() {
 				return
 			}
 
+			parsedURL, err := url.ParseRequestURL(rawURL)
+			if err != nil || !strings.Contains(rawURL, "."){
+				fmt.Println("Error !! Invalid URL form.")
+				return
+			}
 
 		}
 		
-		func handleHistory(){
-
+		func handleHistory(reader *bufio.Reader){
+history := loadHistory()
 		}
 
 		func executeDownload(){
 
+if err := os.MkdirAll(savePath,0755);err != nil {
+	return nil, fmt.Errorf("System Error(Could not access folder) : %w",err)
+}
+ 
+client := &http.Client {
+	Timeout: 60*time.Minute,
+	Transport : &http.Transport{
+	}
+}
 		}
 
-		func resolvePath(){
+		func resolvePath( p string ) string{
 
 		} 
