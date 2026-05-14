@@ -93,3 +93,15 @@ client := &http.Client {
 		func resolvePath( p string ) string{
 
 		}
+
+		func isOutOfScope(rawURL string) bool {
+			u, _ := url.Parse(rawURL)
+			host := strings.ToLower(u.Host)
+			for _, domain := range outOfscopeDomains {
+				if strings.Contains(host,domain){
+					return true
+				}
+			}
+			
+			return fals
+		}
