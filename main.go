@@ -20,6 +20,11 @@ type DownloadRecord struct {
 	DownloadedAt  time.Time `json:"downloaded_at"`
 }
 
+const historyFile = "record.json"
+
+var outOfScopeDomains = []string {
+	"youtube.com","viemo.com","tiktok.com","instagram.com","facebook.com",
+
 func main() {
 	fmt.Println("Elevator")
 	fmt.Println("Download Anything fast")
@@ -87,4 +92,4 @@ client := &http.Client {
 
 		func resolvePath( p string ) string{
 
-		} 
+		}
