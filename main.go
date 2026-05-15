@@ -71,6 +71,10 @@ func main() {
 				return
 			}
 
+			if isOutofScope(parseURL.String()){
+				fmt.Println("Error : Sorry!! Downlaods are prohibited from this platform")
+				return
+			}
 		}
 		
 		func handleHistory(reader *bufio.Reader){
@@ -103,5 +107,17 @@ client := &http.Client {
 				}
 			}
 			
-			return fals
+		 return false
+		}
+
+		func fixExtension(filename string , contentType string)string {
+
+		}
+
+		func getFilenamefromURL(rawURL string)string{
+
+		}
+
+		func loadHistory(){
+
 		}
