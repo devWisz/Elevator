@@ -75,6 +75,18 @@ func main() {
 				fmt.Println("Error : Sorry!! Downlaods are prohibited from this platform")
 				return
 			}
+
+
+			defaultDir :=getDefaultSaveDir()
+			fmt.Println("Save Directory(Press Enter for: %s)\nPath>",defaultDir)
+
+			saveDir,_ := reader.ReadString('\n')
+			saveDir = strings.TrimSpace(saveDir)
+
+			if saveDir ==""{
+
+				saveDir = defaultDir 
+			}
 		}
 		
 		func handleHistory(reader *bufio.Reader){
