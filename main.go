@@ -8,6 +8,7 @@ import (
 	"io"
 	"net/url"
 	"os"
+	"strings"
 )
 
 type DownloadRecord struct {
@@ -87,10 +88,18 @@ func main() {
 
 				saveDir = defaultDir 
 			}
+
+			saveDir = resolvePath(saveDir)
 		}
+
 		
 		func handleHistory(reader *bufio.Reader){
 history := loadHistory()
+if len(history ==0){
+
+	fmt.Println("\n NO download history available")
+	return
+}
 		}
 
 		func executeDownload(){
@@ -108,6 +117,11 @@ client := &http.Client {
 
 		func resolvePath( p string ) string{
 
+			home, _ := os.UserHomeDir(
+
+				if strings.HasPrefix(p, "-")
+				p = filepath.Join(Home,p[1:])
+			)
 		}
 
 		func isOutOfScope(rawURL string) bool {
@@ -127,6 +141,7 @@ client := &http.Client {
 		}
 
 		func getFilenamefromURL(rawURL string)string{
+
 
 		}
 
