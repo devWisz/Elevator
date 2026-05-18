@@ -50,11 +50,12 @@ func main() {
 		case "2":
 		handleHistory(reader)
 		case "3":
-	
+	os.Remove(historyFile)
+	fmt.Println("Historry cleared successfully")
 		case "4":
-			klm 
+			fmt.Println("Thank you for using Elevator..")
 		default:
-			fmt.Println("error in choosing opption")
+			fmt.Println("error in choosing opption.Please select 1-4/")
 		}
 
 		func handleNewDownload(reader *bufio.Reader){
@@ -111,7 +112,21 @@ if err := os.MkdirAll(savePath,0755);err != nil {
 client := &http.Client {
 	Timeout: 60*time.Minute,
 	Transport : &http.Transport{
-	}
+		TLSClientConfig: &tls.Config{InsecureSkipVerify:true},
+	},
+}
+
+resp, err := client.Get(targertURL)
+if err != nil {
+	return nil, 
+	fmt.Errorf("Error in Network: %w",err)
+}
+
+defer resp.Body.Close()
+
+
+if resp.StatusCode !=http.StatusOK {
+	return nil, fmt.Errorf("Error in Server: %s",resp.Status)
 }
 		}
 
