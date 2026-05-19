@@ -139,6 +139,16 @@ if resp.StatusCode !=http.StatusOK {
 			)
 		}
 
+		lowerP := strings.ToLower(p)
+        if lowerP =="desktop"{
+			p= filepath.Join(home,"Desktop")
+		} else if lowerP =="downloads"{
+			p = filepath.Join(home,"Downloads")
+		} else if lowerP =="documents"{
+			p=filePath.Join(home,documents)
+		}
+
+
 		func isOutOfScope(rawURL string) bool {
 			u, _ := url.Parse(rawURL)
 			host := strings.ToLower(u.Host)
