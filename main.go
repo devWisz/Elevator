@@ -161,8 +161,20 @@ if resp.StatusCode !=http.StatusOK {
 		 return false
 		}
 
+		
 		func fixExtension(filename string , contentType string)string {
 
+			exts ,_ : mime.ExtensionByType(ContentType)
+           if len(exts)==0 {
+	       return filename
+}
+
+if filepath.Ext(filename) != ""{
+
+	return filename
+}
+
+return filename +exts[0]
 		}
 
 		func getFilenamefromURL(rawURL string)string{
