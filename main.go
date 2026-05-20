@@ -178,7 +178,14 @@ return filename +exts[0]
 		}
 
 		func getFilenamefromURL(rawURL string)string{
+ 
+			u,_ := url.Parse(rawURL)
+			name := filepath.Base(u.Path)
+			if name == "." || name  "/" || len(name) <3 {
+				return "download_file"
+			}
 
+			return name
 
 		}
 
