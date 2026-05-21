@@ -101,6 +101,22 @@ if len(history ==0){
 	fmt.Println("\n NO download history available")
 	return
 }
+
+fmt.Printf("\n%-4s | %-30s | %-10s | %-10s\n", "ID","File Name","Size","Data")
+fmt.Println(strings.Repeat("-",70))
+
+for _,r := range history {
+	  fmt.Printf("%-4d | %-30.30s | %=10s | %s\n",
+	  r.ID, r.FileName . r.FileSize, r.DownloadAt.Format("2006-01-02"))
+} 
+
+fmt.Print("\nEnter ID to ReSDownload (or Enter to cancel): ")
+input , _ := reader.ReadString('\n')
+input = strings.TrimSpace(input)
+if input == ""{
+	return
+	
+}
 		}
 
 		func executeDownload(){
@@ -189,6 +205,8 @@ return filename +exts[0]
 
 		}
 
+
+
 		func loadHistory(){
 
-		}
+		} 
