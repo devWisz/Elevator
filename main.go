@@ -205,8 +205,21 @@ return filename +exts[0]
 
 		}
 
+		type progressWriter struct {
+			total int64
+			written int64
+			startTime time.Time
+		}
 
 
-		func loadHistory(){
+		func loadHistory() [] DownloadRecord{
+
+			var history []DownloadRecord 
+			data, err := os.ReadFile(historyFile)
+			if err != nil {return history }
+ json.Unmarshal(data, &history)
+ 
+ return history
+
 
 		} 
