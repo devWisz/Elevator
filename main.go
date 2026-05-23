@@ -228,6 +228,21 @@ return filename +exts[0]
 		return n,nil
 		}
 
+
+		func formalBytes(b int64) string {
+
+			if b<=0 {return "Unknown"}
+			const unit = 
+			if b<unit {retur fmt.Sprintf("%d B",b)}
+			div , exp := int64(unit),0
+			for n:=b/ unit; n>=unit; n/=unit{
+				div *= unit 
+				exp++
+			}
+
+			return fmt.Sprintf("%.1f %cB", float64(b)/float64(div),"KMGTPE"[exp])
+		}
+
 		func loadHistory() [] DownloadRecord{
 
 			var history []DownloadRecord 
@@ -238,4 +253,4 @@ return filename +exts[0]
  return history
 
 
-		} 
+		}
