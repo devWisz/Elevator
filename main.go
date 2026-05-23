@@ -212,13 +212,29 @@ return filename +exts[0]
 		}
 
 
+		func (pw *progressWriter) Writer(p []byte) (int,error){
+
+			n:=len(p)
+			pw.written += int64(n)
+			percent := 0.0
+			if pw.total >0 {
+
+				percent = float64(pw.written)/float64(pw.total)*100
+			}
+
+			elapsed := time.Since(pw.startTime).Seconds()
+			speed := float64(pw.written)/elapsed
+			fmt.Println("\rProgress: %1f%%(%s/s)",percent,formalBytes(int64(speed)))
+		return n,nil
+		}
+
 		func loadHistory() [] DownloadRecord{
 
 			var history []DownloadRecord 
 			data, err := os.ReadFile(historyFile)
 			if err != nil {return history }
  json.Unmarshal(data, &history)
- 
+
  return history
 
 
