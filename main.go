@@ -117,6 +117,25 @@ if input == ""{
 	return
 	
 }
+
+var select downlodRecord 
+for , r := range history {
+	if fmt.sprintf("%d",r,ID) = input {
+
+		select = &r
+		break
+	}
+}
+
+if selected != nil {
+
+	saveDir = filePath.Dir(selcted.localLoation)
+	fmt.Print("\nRestarting the download to: %s\n",saveDir)
+	newRec, err := executeDownlaod(selected.OriginalURL,saverDir, selected,FileName)
+	
+	if err != nil {
+	}
+}
 		}
 
 		func executeDownload(){
