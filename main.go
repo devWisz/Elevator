@@ -272,4 +272,22 @@ return filename +exts[0]
  return history
 
 
-		}
+		} 
+
+
+func saveToHistory(record *DownloadRecord) {
+
+
+	history := loadHistory()
+	maxID := 0
+	for _, r := range history {
+		if r.ID > maxID { maxID = r.ID }
+	}
+
+
+	record.ID = maxID + 1
+	history = append(history, *record)
+	data, _ := json.MarshalIndent(history, "", "  ")
+	os.WriteFile(historyFile, data, 0644)
+
+}
