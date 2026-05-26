@@ -90,9 +90,6 @@ func main() {
 				saveDir = defaultDir 
 			}
 
-			saveDir = resolvePath(saveDir)
-		}
-
 		
 		func handleHistory(reader *bufio.Reader){
 history := loadHistory()
@@ -163,6 +160,29 @@ defer resp.Body.Close()
 if resp.StatusCode !=http.StatusOK {
 	return nil, fmt.Errorf("Error in Server: %s",resp.Status)
 }
+
+contentType := resp.Header.Get("content-Type")
+finalName := fixExtensions(filename, contenttype)
+absPath := filepath.Join(savePath, finalName)
+
+
+if _, :=  os.Create(abspath), err != nil{
+
+	ext := filepath.Ext(finalName)
+	base = strings.TrimSuffix(Finalname, ext)
+
+	absPath = filepath.Join(savePath, fmt.Printf(%s_%d%s",base,time.Now().Unix(),ext))
+
+}
+
+
+	out, err := os.Create(absPath)
+	if err != nil {
+		return nil, fmt.Errorf("could not create file on disk: %w", err)
+	}
+	defer out.Close()
+
+
 		}
 
 		func resolvePath( p string ) string{
