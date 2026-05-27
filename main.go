@@ -90,6 +90,29 @@ func main() {
 				saveDir = defaultDir 
 			}
 
+			saveDir = resolvePath(saveDir)
+
+			suggestename := getfilenamefromURL(parsedURL.string())
+
+			fmt.Printf("File Name [%s]:", suggestedname)
+            newName, _ := reader.ReadString('\n')
+			newName = strings.TrimSpace(newName)
+
+			if new Name == ""{
+newName = suggestedname
+
+			}
+
+			record , _ = executeDownload(parsedURL.string(), saveDir, newName)
+
+			if err != nil {
+fmt.Printf("failed to download : %v\n", err)
+
+			} else {
+
+savetoHistory(record)
+
+			}
 		
 		func handleHistory(reader *bufio.Reader){
 history := loadHistory()
