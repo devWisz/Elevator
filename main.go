@@ -98,7 +98,7 @@ func main() {
             newName, _ := reader.ReadString('\n')
 			newName = strings.TrimSpace(newName)
 
-			if new Name == ""{
+			if newName == ""{
 newName = suggestedname
 
 			}
@@ -138,11 +138,11 @@ if input == ""{
 	
 }
 
-var select downlodRecord 
-for , r := range history {
-	if fmt.sprintf("%d",r,ID) = input {
+var selected *DownloadRecord 
+for _, r := range history {
+	if fmt.Sprintf("%d",r.ID) == input {
 
-		select = &r
+		selected = &r
 		break
 	}
 }
@@ -158,7 +158,7 @@ if selected != nil {
 }
 		}
 
-		func executeDownload(){
+		func executeDownload(targetURL, savePath, fileName string)(*DownloadRecord,error){
 
 if err := os.MkdirAll(savePath,0755);err != nil {
 	return nil, fmt.Errorf("System Error(Could not access folder) : %w",err)
@@ -189,13 +189,12 @@ finalName := fixExtensions(filename, contenttype)
 absPath := filepath.Join(savePath, finalName)
 
 
-if _, :=  os.Create(abspath), err != nil{
+if _, err :=  os.Create(abspath), err != nil{
 
 	ext := filepath.Ext(finalName)
-	base = strings.TrimSuffix(Finalname, ext)
+	base := strings.TrimSuffix(FinalName, ext)
 
-	absPath = filepath.Join(savePath, fmt.Printf(%s_%d%s",base,time.Now().Unix(),ext))
-
+	absPath = filepath.Join(savePath, fmt.Sprintf("%s_%d%s",base,time.Now().Unix(),ext))
 }
 
 
@@ -212,8 +211,8 @@ if _, :=  os.Create(abspath), err != nil{
 
 			home, _ := os.UserHomeDir(
 
-				if strings.HasPrefix(p, "-")
-				p = filepath.Join(Home,p[1:])
+				if strings.HasPrefix(p, "~"){
+				p = filepath.Join(home,p[1:])
 			)
 		}
 
