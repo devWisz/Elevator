@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "file_name": "test-image.jfif",
+    "file_type": "image/jpeg",
+    "file_size": "39.6 KB",
+    "original_url": "https://imgs.search.brave.com/L4CNBbSCJkXiWp_5Aj6brRp7uyis2PQpsm56WPFnzaE/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTMz/Nzg3OTM4MC9waG90/by9tdC1ldmVyZXN0/LmpwZz9zPTYxMng2/MTImdz0wJms9MjAm/Yz03ZUNKM2M3Z251/ajJoSzVGQjhNMnli/X0dJWTVVaHlHcUp0/bnE0Z2otQ1dzPQ",
+    "downloaded_at": "2026-06-01T16:57:31.1776955+05:45"
+  },
+  {
+    "id": 2,
+    "file_name": "lion.jfif",
+    "file_type": "image/jpeg",
+    "file_size": "20.8 KB",
+    "original_url": "https://imgs.search.brave.com/AUoY7LMABlFoP61tEmfpMqpkZ0yohXneuo_Trl1BxVM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMjcv/NzMyLzQ5NC9zbWFs/bC9tYWplc3RpYy1s/aW9uLWluLXRoZS13/aWxkLW1hbmUtZmxv/d2luZy1leWVzLWZv/Y3VzZWQtc3Vuc2V0/LWdlbmVyYXRlZC1i/eS1haS1waG90by5q/cGc",
+    "downloaded_at": "2026-06-01T16:58:13.7419392+05:45"
+  }
+]
