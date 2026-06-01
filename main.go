@@ -25,7 +25,7 @@ const historyFile = "record.json"
 
 var outOfScopeDomains = []string {
 	"youtube.com","viemo.com","tiktok.com","instagram.com","facebook.com",
-
+}
 func main() {
 	fmt.Println("Elevator")
 	fmt.Println("Download Anything fast")
@@ -57,6 +57,7 @@ func main() {
 		default:
 			fmt.Println("error in choosing opption.Please select 1-4/")
 		}
+	}}
 
 		func handleNewDownload(reader *bufio.Reader){
 			fmt.Print("\nEnter URL : ")
@@ -112,7 +113,7 @@ fmt.Printf("failed to download : %v\n", err)
 
 savetoHistory(record)
 
-			}
+			}}
 		
 		func handleHistory(reader *bufio.Reader){
 history := loadHistory()
@@ -189,7 +190,7 @@ finalName := fixExtensions(filename, contenttype)
 absPath := filepath.Join(savePath, finalName)
 
 
-if _, err :=  os.Create(abspath), err != nil{
+if _, err :=  os.Stat(abspath); err != nil{
 
 	ext := filepath.Ext(finalName)
 	base := strings.TrimSuffix(FinalName, ext)
@@ -205,15 +206,48 @@ if _, err :=  os.Create(abspath), err != nil{
 	defer out.Close()
 
 
-		}
+		
 
-		func resolvePath( p string ) string{
+		sigChan := make(chan os.Signal, 1)
+	signal.Notify(sigChan, os.Interrupt, syscall.SIGTERM)
+	go func() {
+		<-sigChan
+		out.Close()
+		os.Remove(absPath)
+		fmt.Println("\n[!] Download interrupted. Cleanup complete.")
+		os.Exit(1)
+	}()
 
-			home, _ := os.UserHomeDir(
+	pw := &progressWriter{
+		total:     resp.ContentLength,
+		startTime: time.Now(),
+	}
+
+	_, err = io.Copy(out, io.TeeReader(resp.Body, pw))
+	if err != nil {
+		return nil, fmt.Errorf("transfer failed: %w", err)
+	}
+
+	fmt.Printf("\n DOWNLOAD COMPLETE\n Location: %s\n", absPath)
+
+	return &DownloadRecord{
+		FileName:      filepath.Base(absPath),
+		FileType:      contentType,
+		FileSize:      formatBytes(resp.ContentLength),
+		OriginalURL:   targetURL,
+		LocalLocation: absPath,
+		DownloadedAt:  time.Now(),
+	}, nil
+}
+
+
+
+		func resolvePath( p string ) string {
+
+			home, _ := os.UserHomeDir()
 
 				if strings.HasPrefix(p, "~"){
 				p = filepath.Join(home,p[1:])
-			)
 		}
 
 		lowerP := strings.ToLower(p)
@@ -222,11 +256,12 @@ if _, err :=  os.Create(abspath), err != nil{
 		} else if lowerP =="downloads"{
 			p = filepath.Join(home,"Downloads")
 		} else if lowerP =="documents"{
-			p=filePath.Join(home,documents)
+			p=filepath.Join(home,"documents")
 		}
+		return p
+	}
 
-
-		func isOutOfScope(rawURL string) bool {
+	func isOutOfScope(rawURL string) bool {
 			u, _ := url.Parse(rawURL)
 			host := strings.ToLower(u.Host)
 			for _, domain := range outOfscopeDomains {
@@ -236,17 +271,16 @@ if _, err :=  os.Create(abspath), err != nil{
 			}
 			
 		 return false
-		}
-
+	}
 		
-		func fixExtension(filename string , contentType string)string {
+		func fixExtension(filename string , contentType string)string { 
 
-			exts ,_ : mime.ExtensionByType(ContentType)
+			exts, _ := mime.ExtensionByType(contentType)
            if len(exts)==0 {
 	       return filename
 }
 
-if filepath.Ext(filename) != ""{
+if filepath.Ext(filename) != ""{ 
 
 	return filename
 }
@@ -254,7 +288,7 @@ if filepath.Ext(filename) != ""{
 return filename +exts[0]
 		}
 
-		func getFilenamefromURL(rawURL string)string{
+		func getFilenameFromURL(rawURL string)string{
  
 			u,_ := url.Parse(rawURL)
 			name := filepath.Base(u.Path)
@@ -262,7 +296,7 @@ return filename +exts[0]
 				return "download_file"
 			}
 
-			return name
+			return name  
 
 		}
 
@@ -273,7 +307,7 @@ return filename +exts[0]
 		}
 
 
-		func (pw *progressWriter) Writer(p []byte) (int,error){
+		func (pw *progressWriter) Write(p []byte) (int,error){
 
 			n:=len(p)
 			pw.written += int64(n)
@@ -293,8 +327,8 @@ return filename +exts[0]
 		func formalBytes(b int64) string {
 
 			if b<=0 {return "Unknown"}
-			const unit = 
-			if b<unit {retur fmt.Sprintf("%d B",b)}
+			const unit = 1024
+			if b<unit {return fmt.Sprintf("%d B",b)}
 			div , exp := int64(unit),0
 			for n:=b/ unit; n>=unit; n/=unit{
 				div *= unit 
@@ -332,4 +366,4 @@ func saveToHistory(record *DownloadRecord) {
 	data, _ := json.MarshalIndent(history, "", "  ")
 	os.WriteFile(historyFile, data, 0644)
 
-}
+} 
