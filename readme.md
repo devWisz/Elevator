@@ -6,6 +6,8 @@ The application is designed to provide a simple download experience while automa
 
 ---
 
+Demo Video link : https://youtu.be/zoV_UFQ96WE
+
 Use it directly : https://github.com/devWisz/Elevator/releases/tag/1.0
 
 ## Features :
