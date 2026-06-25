@@ -1,6 +1,7 @@
 # Elevator
 
-Elevator is a lightweight CLI file downloader written in Go. It lets you download files from URLs, keep track of download history, and re-download files whenever needed.
+Elevator is a lightweight CLI file downloader written in Go.It allows you to download anything you wanted to.
+
 
 Demo Video link : https://youtu.be/zoV_UFQ96WE
 
@@ -55,16 +56,7 @@ Cross-compile from Linux/macOS:
 ```bash
 GOOS=windows GOARCH=amd64 go build -o elevator.exe
 ```
-
-## Usage
-
-```text
-1. New Download
-2. View History & Re-download
-3. Clear History
-4. Exit
-```
-
+
 Download history is stored locally in:
 
 ```text
